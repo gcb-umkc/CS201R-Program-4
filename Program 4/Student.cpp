@@ -75,10 +75,10 @@ float Student::CourseAverage() const {
 	for (int i = 0; i < 3; i++) {
 		examSum += exam.at(i);
 	}
-	float quiz = quizSum / (20 * 5);
-	float exam = examSum / (20 * 3);
+	float quizAverage = quizSum / (20 * 5);
+	float examAverage = examSum / (100 * 3);
 
-	float total = quiz * (65) + quiz * (35);
+	float total = examAverage * (65) + quizAverage * (35);
 	return total;
 }
 
