@@ -9,10 +9,10 @@ Student::Student() {
 	string second = "";
 
 	for (int i = 0; i < 5; i++) {
-		quiz.at(i) = 0;
+		quiz.push_back(0);
 	}
 	for (int i = 0; i < 3; i++) {
-		exam.at(i) = 0;
+		exam.push_back(0);
 	}
 }
 
@@ -37,14 +37,15 @@ bool Student::ReadData(istream& in) {
 }
 
 bool Student::WriteData(ostream& out) const {
-	out << left << setw(20) << first << endl;
-	out << left << setw(20) << second << endl;
+	out << left << setw(20) << first;
+	out << left << setw(20) << second;
 	for (int i = 0; i < 5; i++) {
-		out << right << setw(4) << quiz.at(i) << endl;
+		out << right << setw(4) << quiz.at(i);
 	}
 	for (int i = 0; i < 3; i++) {
-		out << right << setw(5) << exam.at(i) << endl;
+		out << right << setw(5) << exam.at(i);
 	}
+	cout << endl;
 	
 	//Returns if all data is output right
 	if (out.fail()) {
@@ -89,7 +90,7 @@ bool Student::DisplayCourseAverage(ostream& out) const {
 string Student::LetterGrade() const {
 	float numGrade = CourseAverage();
 	if (numGrade < 0) {
-		return "Error";
+		return "Invalid Grade";
 	}
 	else if (numGrade < 60) {
 		return "F";
@@ -99,5 +100,35 @@ string Student::LetterGrade() const {
 	}
 	else if (numGrade <= 67) {
 		return "D";
+	}
+	else if (numGrade <= 69) {
+		return "D+";
+	}
+	else if (numGrade <= 73) {
+		return "C-";
+	}
+	else if (numGrade <= 77) {
+		return "C";
+	}
+	else if (numGrade <= 79) {
+		return "C+";
+	}
+	else if (numGrade <= 83) {
+		return "B-";
+	}
+	else if (numGrade <= 87) {
+		return "B";
+	}
+	else if (numGrade <= 89) {
+		return "B+";
+	}
+	else if (numGrade <= 93) {
+		return "A-";
+	}
+	else if (numGrade <= 100) {
+		return "A";
+	}
+	else {
+		return "Invalid Grade";
 	}
 }
