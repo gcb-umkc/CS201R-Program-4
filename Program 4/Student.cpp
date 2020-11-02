@@ -4,6 +4,7 @@
 #include <iomanip>
 using namespace std;
 
+//Default Constructor, sets name to blank and grades to 0
 Student::Student() {
 	string first = "";
 	string second = "";
@@ -16,6 +17,7 @@ Student::Student() {
 	}
 }
 
+//Reads data into the class data, returns true if successful
 bool Student::ReadData(istream& in) {
 	in >> first;
 	in >> second;
@@ -36,6 +38,7 @@ bool Student::ReadData(istream& in) {
 	}
 }
 
+//Outputs data to output stream and returns if it is successful
 bool Student::WriteData(ostream& out) const {
 	out << left << setw(20) << first;
 	out << left << setw(20) << second;
@@ -56,15 +59,17 @@ bool Student::WriteData(ostream& out) const {
 	}
 }
 
-
+//Returns first name of student
 string Student::GetFirstName() const {
 	return first;
 }
 
+//Returns last name of student
 string Student::GetLastName() const {
 	return second;
 }
 
+//Returns the course grade for a student
 float Student::CourseAverage() const {
 	float quizSum = 0;
 	float examSum = 0;
@@ -82,16 +87,20 @@ float Student::CourseAverage() const {
 	return total;
 }
 
+//Outputs the course average to 3 decimal points
 bool Student::DisplayCourseAverage(ostream& out) const {
 	out << setprecision(3) << fixed << CourseAverage();
 	return !out.fail();
 }
 
+//Converts numerical grade to letter grade using UMKC grading scale
 string Student::LetterGrade() const {
 	float numGrade = CourseAverage();
-	
-	//Rounds up to nearest integer
+
+	//Rounds up grade to nearest integer
 	numGrade = round(numGrade);
+
+	//Returns invalid grade if lower than 0 or greater than 100
 	if (numGrade < 0) {
 		return "Invalid Grade";
 	}
