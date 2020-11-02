@@ -89,6 +89,9 @@ bool Student::DisplayCourseAverage(ostream& out) const {
 
 string Student::LetterGrade() const {
 	float numGrade = CourseAverage();
+	
+	//Rounds up to nearest integer
+	numGrade = round(numGrade);
 	if (numGrade < 0) {
 		return "Invalid Grade";
 	}

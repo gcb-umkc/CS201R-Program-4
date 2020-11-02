@@ -23,6 +23,24 @@ void outputRoster(vector<Student> students) {
     }
     
 }
+
+//Uses insertion sort and string integer comparisons
+void sortNames(vector<Student>& students) {
+    for (unsigned int i = 0; i < students.size(); i++) {
+        unsigned int j = i;
+        while (j > 0 && 
+            (students.at(j).GetLastName() < students.at(j - 1).GetLastName() || 
+            (students.at(j).GetLastName() == students.at(j - 1).GetLastName() && students.at(j).GetFirstName() < students.at(j - 1).GetFirstName()))
+            ) {
+            Student temp = students.at(j);
+            students.at(j) = students.at(j - 1);
+            students.at(j - 1) = temp;
+            --j;
+        }
+    }
+    return;
+}
+
 int main()
 {
     vector<Student> students;
@@ -38,7 +56,8 @@ int main()
     }
 
     input.close();
-    
+    sortNames(students);
+
     outputRoster(students);
 
 }
